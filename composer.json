@@ -18,7 +18,7 @@
     ],
     "require": {
         "rbdwllr/reallysimplejwt": "^2.0",
-        "lcobucci/jwt": "^4.0"
+        "lcobucci/jwt": "~3.3"
     },
     "autoload": {
         "psr-4": {

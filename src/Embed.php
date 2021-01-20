@@ -75,6 +75,12 @@ class Embed
      */
     private function encode($resource, $params)
     {
+        // $payload = [
+        //     'resource' => $resource,
+        //     'params' => (empty($params)) ? (object)[] : $params,
+        //     'exp' => strtotime('+10 minutes'),
+        // ];
+
         $jwt = new \Lcobucci\JWT\Token\Builder();
         $jwt->set('resource', $resource);
         if (empty($params)) {

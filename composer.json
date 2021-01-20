@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "adhocore/jwt": "^1.1",
+        "rbdwllr/reallysimplejwt": "^2.0",
         "lcobucci/jwt": "^4.0"
     },
     "autoload": {

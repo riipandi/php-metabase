@@ -75,7 +75,7 @@ class Embed
      */
     private function encode($resource, $params)
     {
-        $jwt = new \Lcobucci\JWT\Builder();
+        $jwt = new \Lcobucci\JWT\Token\Builder();
         $jwt->set('resource', $resource);
         if (empty($params)) {
             $jwt->set('params', (object)[]);

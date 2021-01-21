@@ -90,7 +90,7 @@ class Embed
         $token = $config->builder()
                 ->withClaim('resource', $resource)
                 ->withClaim('params', $params)
-                ->expiresAt($now->modify('+10 hours'))
+                ->expiresAt($now->modify('+10 minutes'))
                 ->issuedAt($now)
                 ->getToken($config->signer(), $config->signingKey());
 

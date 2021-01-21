@@ -2,7 +2,9 @@
 
 namespace Metabase;
 
-use Lcobucci\JWT\Token;
+use Lcobucci\JWT\Configuration;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
+use Lcobucci\JWT\Signer\Key\InMemory;
 
 /**
  * Convenience class to embed Metabase dashboards and questions
@@ -75,22 +77,26 @@ class Embed
      */
     private function encode($resource, $params)
     {
-        // $payload = [
-        //     'resource' => $resource,
-        //     'params' => (empty($params)) ? (object)[] : $params,
-        //     'exp' => strtotime('+10 minutes'),
-        // ];
+        $params = (empty($params)) ? (object)[] : $params;
 
-        $jwt = new \Lcobucci\JWT\Token\Builder();
-        $jwt->set('resource', $resource);
-        if (empty($params)) {
-            $jwt->set('params', (object)[]);
-        } else {
-            $jwt->set('params', $params);
-        }
-        $jwt->sign(new \Lcobucci\JWT\Signer\Hmac\Sha256(), $this->key);
+        $config = Configuration::forSymmetricSigner(
+            new Sha256(), InMemory::plainText($this->key)
+        );
+        assert($config instanceof Configuration);
 
-        return $jwt->getToken();
+        $now = new \DateTimeImmutable('@' . time());
+
+        $token = $config->builder()
+                ->withClaim('resource', $resource)
+                ->withClaim('params', $params)
+                ->expiresAt($now->modify('+10 hours'))
+                ->issuedAt($now)
+                ->getToken($config->signer(), $config->signingKey());
+
+        $token->headers(); // Retrieves the token headers
+        $token->claims(); // Retrieves the token claims
+
+        return $token->toString();
     }
 
     protected function url($resource, $id, $params)

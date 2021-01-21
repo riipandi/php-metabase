@@ -80,7 +80,8 @@ class Embed
         $params = (empty($params)) ? (object)[] : $params;
 
         $config = Configuration::forSymmetricSigner(
-            new Sha256(), InMemory::plainText($this->key)
+            new Sha256(),
+            InMemory::plainText($this->key)
         );
         assert($config instanceof Configuration);
 

@@ -23,7 +23,34 @@ include 'vendor/autoload.php';
 $metabaseUrl = '[metabase_url]';      // The url of the metabase installation
 $metabaseKey = '[metabase_key]';      // The metabase secret embed key
 $dashboardId = 1;                     // The id of the dashboard (from the url)
-$params = ['date' => 'past26weeks'];  // Any parameters to pass to the dashboard
+$params = ['date' => 'past26weeks'];  // Any parameters to pass to the dashboard (optional)
+
+$metabase = new \Metabase\Embed($metabaseUrl, $metabaseKey);
+
+// Generate the HTML to create an iframe with the embedded dashboard
+echo $metabase->dashboardIframe($dashboardId, $params);
+```
+
+## Using With Laravel
+
+Create config file at `confog/metabase.php`
+
+```php
+<?php
+
+return [
+    'url' => env('METABASE_URL', 'http://localhost:3000'),
+    'key' => env('METABASE_KEY'),
+]
+```
+
+```php
+<?php
+
+$metabaseUrl = config('metabase.url');    // The url of the metabase installation
+$metabaseKey = config('metabase.key');    // The metabase secret embed key
+$dashboardId = 1;                         // The id of the dashboard (from the url)
+$params = ['date' => 'past26weeks'];      // Any parameters to pass to the dashboard (optional)
 
 $metabase = new \Metabase\Embed($metabaseUrl, $metabaseKey);
 

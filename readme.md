@@ -1,4 +1,9 @@
 # PHP Metabase
+
+[![Latest Stable Version](http://poser.pugx.org/riipandi/php-metabase/v)](https://packagist.org/packages/riipandi/php-metabase) [![Total Downloads](http://poser.pugx.org/riipandi/php-metabase/downloads)](https://packagist.org/packages/riipandi/php-metabase) [![Latest Unstable Version](http://poser.pugx.org/riipandi/php-metabase/v/unstable)](https://packagist.org/packages/riipandi/php-metabase) [![License](http://poser.pugx.org/riipandi/php-metabase/license)](https://packagist.org/packages/riipandi/php-metabase) [![PHP Version Require](http://poser.pugx.org/riipandi/php-metabase/require/php)](https://packagist.org/packages/riipandi/php-metabase)
+
+---
+
 Library to embed [Metabase](http://www.metabase.com/) frames. Forked from [ipeevski/metabase-php](https://github.com/ipeevski/metabase-php)
 
 ## Installation
